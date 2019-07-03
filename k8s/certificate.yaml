@@ -1,0 +1,21 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: exponea-horse-tls
+spec:
+  secretName: exponea-horse
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: exponea.horse
+  dnsNames:
+    - exponea.horse
+    - www.exponea.horse
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - exponea.horse
+          - www.exponea.horse
+          
